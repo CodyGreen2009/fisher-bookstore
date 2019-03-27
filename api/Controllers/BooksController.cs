@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Fisher.Bookstore.Models;
+using Fisher.Bookstore.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fisher.Bookstore.Api.Controllers
@@ -61,8 +62,9 @@ namespace Fisher.Bookstore.Api.Controllers
 
             return Ok(book);
         }
-       [HttpPost]
-        public IActionResult Post ([FromBody] Book book)
+
+        [HttpPost]
+        public IActionResult Post([FromBody]Book book)
         {
             if (book == null)
             {
@@ -72,10 +74,10 @@ namespace Fisher.Bookstore.Api.Controllers
             db.Books.Add(book);
             db.SaveChanges();
 
-            return CreatedAtRoute("GetBook", new { id = book.Id}, book);
+            return CreatedAtRoute("GetBook", new { id = book.Id }, book);
         }
 
-           [HttpPut("{id}")]
+        [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Book book)
         {
             if (book == null || book.Id != id)
@@ -98,17 +100,17 @@ namespace Fisher.Bookstore.Api.Controllers
             return NoContent();
         }
 
-    [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
-    {
-        var book = db.Books.FirstOrDefault(b => b.Id == id);
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var book = db.Books.FirstOrDefault(b => b.Id == id);
 
-        if (book == null)
+            if (book == null)
             {
-             return NotFound();
+                return NotFound();
             }
 
-             db.Books.Remove(book);
+            db.Books.Remove(book);
             db.SaveChanges();
 
             return NoContent();
