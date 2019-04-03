@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Fisher.Bookstore.Models
+namespace Fisher.Bookstore.Api.Models
 {
     public class Author
     {
@@ -12,5 +12,16 @@ namespace Fisher.Bookstore.Models
         public string Bio { get; set; }
         
         public List<Book> Titles { get; set; }
+
+         public void ChangeName(string newName)
+        {
+            this.Name = newName;
+        }
+
+         public void updatedBio(string updatedBio)
+        {
+            this.Bio = updatedBio;
+        }
     }
+    
 }
