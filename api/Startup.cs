@@ -42,6 +42,7 @@ namespace Fisher.Bookstore.Api
                     builder.WithOrigins("http://localhost:4200")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
+
                 });
             });
 
@@ -84,6 +85,7 @@ namespace Fisher.Bookstore.Api
 
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            
             app.UseCors("CorsPolicy");
             app.UseMvc();
         }
